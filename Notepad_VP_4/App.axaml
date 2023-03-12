@@ -1,0 +1,21 @@
+<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="using:NotePad"
+             x:Class="NotePad.App">
+	<Application.DataTemplates>
+		<local:ViewLocator/>
+	</Application.DataTemplates>
+
+	<Application.Styles>
+		<FluentTheme Mode="Dark"/>
+	</Application.Styles>
+
+	<Application.Resources>
+		<Image x:Key="back_folder" Source="/Assets/backFolder.jpeg" />
+		<Image x:Key="drive" Source="/Assets/drive.jpeg" />
+		<Image x:Key="file" Source="/Assets/file.png" />
+		<Image x:Key="folder" Source="/Assets/folder.png" />
+		<Image x:Key="sys_drive" Source="/Assets/sysDrive.jpeg" />
+	</Application.Resources>
+
+</Application>

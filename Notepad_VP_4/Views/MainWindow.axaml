@@ -1,0 +1,43 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:NotePad.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="500" d:DesignHeight="700"
+		Width="500" Height="700"
+		MaxWidth="500" MaxHeight="700"
+		MinWidth="500" MinHeight="700"
+        x:Class="NotePad.Views.MainWindow"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="notePad">
+
+	<Panel>
+		<Grid ShowGridLines="False" IsVisible="{Binding !ExplorerMode}">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="9*"></RowDefinition>
+				<RowDefinition Height="*"></RowDefinition>
+				<RowDefinition Height="*"></RowDefinition>
+			</Grid.RowDefinitions>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="*"></ColumnDefinition>
+			</Grid.ColumnDefinitions>
+			<TextBox Text="{Binding ContentBox}" Grid.Column="0" Grid.Row="0" AcceptsReturn="True" TextWrapping="Wrap" />
+			<Button Name="OpenFile" Grid.Column="0" Grid.Row="1" Command="{Binding Open}"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">Open File</Button>
+			<Button Name="SaveFile" Grid.Column="1" Grid.Row="2" Command="{Binding Save}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">Save File</Button>
+		</Grid>
+		<Grid RowDefinitions="10*,*,*" ColumnDefinitions="*,*" IsVisible="{Binding ExplorerMode}">
+			<ListBox Items="{Binding FileList}" SelectedItem="{Binding SelectedItem}" Name="fileListBox" Grid.ColumnSpan="2">
+				<ListBox.ItemTemplate>
+					<DataTemplate>
+						<Grid ColumnDefinitions="*,9*">
+							<TextBlock Grid.Column="1" Text="{Binding Name}" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+						</Grid>
+					</DataTemplate>
+				</ListBox.ItemTemplate>
+			</ListBox>
+			<TextBox Name="fileTextBox" Text="{Binding FileBox}" Grid.Row="1" Grid.ColumnSpan="2" TextWrapping="NoWrap"></TextBox>
+			<Button Name="okButton" Grid.Column="0" Grid.Row="2" Width="250" Height="60" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Command="{Binding Ok}" Content="{Binding ButtonMode}"/>
+			<Button Name="cancelButton" Grid.Column="1" Grid.Row="2" Width="250" Height="60" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"  Command="{Binding Cancel}">Отмена</Button>
+		</Grid>
+	</Panel>
+</Window>
